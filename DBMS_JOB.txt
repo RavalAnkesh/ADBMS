@@ -8,11 +8,11 @@ CREATE SEQUENCE student_seq START WITH 1 INCREMENT BY 1;
 ------------------------------------------------------------------------------------------------------
 CREATE OR REPLACE PROCEDURE insert_students_job AS
 BEGIN
-    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Alice', 85);
-    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Bob', 90);
-    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Charlie', 78);
-    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'David', 92);
-    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Eve', 88);
+    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Ankesh', 95);
+    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Jayesh', 90);
+    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Parth', 78);
+    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Ram', 92);
+    INSERT INTO student (student_id, name, marks) VALUES (student_seq.NEXTVAL, 'Krishn', 88);
     
     COMMIT;
 END;
@@ -48,3 +48,4 @@ END;
 /
 -----------------------------------------------------------------
 select * from student;
+
