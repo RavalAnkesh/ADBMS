@@ -1,0 +1,63 @@
+==========================================================================
+BEGIN
+  DBMS_DDL.ANALYZE_OBJECT('TABLE', 'your_table_name');
+  DBMS_DDL.ANALYZE_OBJECT('INDEX', 'your_index_name');
+  DBMS_DDL.ANALYZE_OBJECT('CLUSTER', 'your_cluster_name');
+END;
+
+==========================================================================
+
+=========================[ANALYZE TABLE]===============================
+BEGIN
+    DBMS_STATS.GATHER_TABLE_STATS(
+        ownname => 'MCA36',       -- your schema
+        tabname => 'BOOK_DETAILS', -- table to analyze
+        cascade => TRUE            -- also gather stats for indexes
+    );
+END;
+/
+
+=========================[ANALYZE INDEX]==============================
+---------------------CREATE INDEX--------------
+CREATE INDEX BOOK_DETAILS_IDX
+ON BOOK_DETAILS(TITLE);
+-----------------------------------------------
+BEGIN
+    DBMS_STATS.GATHER_TABLE_STATS(
+        ownname => 'MCA36',
+        tabname => 'BOOK_DETAILS',
+        cascade => TRUE  -- also gathers index stats
+    );
+END;
+/
+
+=========================[ANALYZE CLUSTER]============================
+BEGIN
+    DBMS_STATS.GATHER_TABLE_STATS(
+        ownname => 'MCA36',
+        tabname => 'BOOK_CLUSTER', 
+        cascade => TRUE            
+    );
+END;
+/
+--------------------------CREATE CLUSTER-------------------------
+CREATE CLUSTER BOOK_CLUSTER (
+    BOOK_ID NUMBER,
+    AUTHOR_ID NUMBER
+)
+SIZE 1024;
+
+-----------------------------------
+CREATE TABLE BOOK_DETAILS (
+    BOOK_ID NUMBER,
+    AUTHOR_ID NUMBER,
+    TITLE VARCHAR2(100),
+    PRICE NUMBER(10,2)
+) CLUSTER BOOK_CLUSTER (BOOK_ID, AUTHOR_ID);
+
+=======================================================================
+SHOW LAST ANALYZE TIME
+----------------------------------------------------------------------
+SELECT table_name, num_rows, blocks, last_analyzed
+FROM user_tables
+WHERE table_name = 'BOOK_DETAILS';
