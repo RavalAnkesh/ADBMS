@@ -10,10 +10,10 @@ STORAGE (
     PCTINCREASE 0
 );
 
-INSERT INTO emp_frag VALUES (1, 'Amit', 'Delhi');
-INSERT INTO emp_frag VALUES (2, 'Ravi', 'Mumbai');
+INSERT INTO emp_frag VALUES (1, 'Ankesh', 'Delhi');
+INSERT INTO emp_frag VALUES (2, 'Ram', 'Mumbai');
 INSERT INTO emp_frag VALUES (3, 'Sita', 'Pune');
-INSERT INTO emp_frag VALUES (4, 'Karan', 'Chennai');
+INSERT INTO emp_frag VALUES (4, 'Jayesh', 'Chennai');
 COMMIT;
 
 UPDATE emp_frag
@@ -54,6 +54,7 @@ WHERE ROWID IN (SELECT head_rowid FROM chained_rows WHERE table_name='EMP_FRAG')
 
 INSERT INTO emp_frag
 SELECT * FROM emp_frag_dummy;
+
 
 
 TRUNCATE TABLE chained_rows;
